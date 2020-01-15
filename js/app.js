@@ -1,4 +1,5 @@
 import * as UI from "./interfaz.js";
+import { API } from "./api.js";
 
 UI.divSearch.addEventListener("submit", e => {
   e.preventDefault();
@@ -9,9 +10,17 @@ UI.divSearch.addEventListener("submit", e => {
     UI.divMessage.className = "error";
     setTimeout(() => {
       UI.divMessage.innerHTML = "";
-      UI.divMessage.className = "";
+      UI.divMessage.classList.remove("error");
     }, 2000);
   } else {
     console.log("Run API request!");
+    const api = new API(artist, song);
+    api.search_song().then(data => {
+      if (data.error) {
+        console.error(data.error);
+      } else {
+        console.info(data.lyrics);
+      }
+    });
   }
 });
