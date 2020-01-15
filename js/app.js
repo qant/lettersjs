@@ -16,10 +16,19 @@ UI.divSearch.addEventListener("submit", e => {
     console.log("Run API request!");
     const api = new API(artist, song);
     api.search_song().then(data => {
+      console.log(data);
       if (data.error) {
-        console.error(data.error);
+        const text = data.error;
+        UI.divMessage.innerHTML = text;
+        UI.divMessage.className = "error";
+        setTimeout(() => {
+          UI.divMessage.innerHTML = "";
+          UI.divMessage.classList.remove("error");
+        }, 2000);
       } else {
-        console.info(data.lyrics);
+        const text = data.lyrics;
+        console.log(text);
+        UI.divResult.textContent = text;
       }
     });
   }
