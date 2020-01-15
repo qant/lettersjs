@@ -28,6 +28,16 @@ UI.divSearch.addEventListener("submit", e => {
       } else {
         const text = data.lyrics;
         console.log(text);
+        console.log(VoiceRSS);
+        VoiceRSS.speech({
+          key: "b356a283a4b442c6b0fcde4a889b2e6e",
+          src: text,
+          hl: "en-us",
+          r: 0,
+          c: "mp3",
+          f: "44khz_16bit_stereo",
+          ssml: false
+        });
         UI.divResult.textContent = text;
       }
     });
