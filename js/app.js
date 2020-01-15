@@ -27,13 +27,17 @@ UI.divSearch.addEventListener("submit", e => {
         }, 2000);
       } else {
         const text = data.lyrics;
-        console.log(text);
+        let speed = document.querySelector("#speed").value;
+        console.log(speed);
+        if (speed > 10 || speed < 0) {
+          speed = 0;
+        }
         console.log(VoiceRSS);
         VoiceRSS.speech({
           key: "b356a283a4b442c6b0fcde4a889b2e6e",
           src: text,
           hl: "en-us",
-          r: 0,
+          r: speed,
           c: "mp3",
           f: "44khz_16bit_stereo",
           ssml: false
